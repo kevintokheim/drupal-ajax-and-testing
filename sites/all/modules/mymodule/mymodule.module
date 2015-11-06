@@ -21,7 +21,7 @@
         }
 
         //Get the render array for the node, and render it into HTML
-        $build = node_view($node);(
+        $build = node_view($node);
         $html = render($build);
 
         //Prepare ajax command to insert the node's HTML into home page wrapper
@@ -29,6 +29,8 @@
         $commands[] = ajax_command_html('#mymodule_ajax_wrapper', $html);
 
         //Render commands into JSON data format execute them by printing to the browser
+        print ajax_render($commands);
+        exit;
 
 
 
@@ -40,5 +42,4 @@
 
 
 
-        
     }
