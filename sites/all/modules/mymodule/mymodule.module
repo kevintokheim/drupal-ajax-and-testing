@@ -26,10 +26,11 @@
 
         //Prepare ajax command to insert the node's HTML into home page wrapper
         $commands = array();
-        $commands[] = ajax_command_html('#mymodule_ajax_wrapper', $html);
+        $commands[] = ajax_command_html('#mymodule-ajax-wrapper', $html);
 
         //Render commands into JSON data format execute them by printing to the browser
         print ajax_render($commands);
+        drupal_set_message("am I working?");
         exit;
 
 
