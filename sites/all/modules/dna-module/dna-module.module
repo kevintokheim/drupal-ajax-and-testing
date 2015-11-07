@@ -1,0 +1,51 @@
+<?php
+
+    function dna_menu()
+    {
+        $items = array();
+        $items['dna'] = array(
+            'title' => 'DNA Checker',
+            'page callback' => 'drupal_get_form',
+            'page arguments' => array('dna_form'),
+            'access callback' => TRUE,
+            'type' => MENU_NORMAL_ITEM,
+        );
+
+        $items['dna_results'] = array(
+            'title' => 'Results',
+            'page callback' => 'dna_results',
+            'access callback' => TRUE,
+            'type' => MENU_CALLBACK,
+        );
+
+        return $items;
+    }
+
+    function dna_form()
+    {
+        $form['dna_letters'] = array(
+            '#title' => 'DNA Letters',
+            '#type' => 'textfield',
+            '#description' => t('Please enter the first four letters of your DNA chain'),
+            '#required' => TRUE,
+        );
+
+        $form['Submit'] = array(
+            '#type' => 'submit',
+            '#value' => 'Go',
+        );
+
+        return $form;
+    }
+
+    function dna_form_submit($form, &$form_state)
+    {
+
+
+
+
+
+
+
+        
+    }
