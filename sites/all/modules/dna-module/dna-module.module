@@ -40,12 +40,18 @@
 
     function dna_form_submit($form, &$form_state)
     {
+        $dna_array = array("A" => "T", "C" => "G", "T" => "A", "C" => "G");
 
+        $user_input = $form_state['values']['dna_letters'];
 
+        $user_input = str_split($user_input);
 
+        $dna_results = array();
 
+        foreach ($user_input as $dna){
+            $nucleotide = array_search($dna, $dna_array);
+            array_push($dna_results, $nucleotide);
+        }
 
-
-
-        
+        return implode("", $dna_results);
     }

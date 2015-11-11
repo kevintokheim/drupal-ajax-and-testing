@@ -1,0 +1,42 @@
+<?php
+
+    class DnaTestCase extends DrupalUnitTestCase
+    {
+        public static function getInfo()
+        {
+            //Returns information about tests in this class
+            return array(
+                'name' => 'My DNA unit tests',
+                'description' => 'Test that Dna module is working',
+                'group' => 'Epicodus Example Tests',
+            );
+        }
+
+        function testDNAModule()
+        {
+            //Displays desired result during test
+            $description = 'ACAC should return TGTG.';
+
+            //Arrange
+            //Create input
+            $input = 'ACAC';
+
+            //Act
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
