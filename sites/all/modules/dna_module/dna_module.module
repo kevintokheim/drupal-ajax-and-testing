@@ -1,0 +1,67 @@
+<?php
+
+    function dna_menu()
+    {
+        $items = array();
+        $items['dna'] = array(
+            'title' => 'DNA Checker',
+            'page callback' => 'drupal_get_form',
+            'page arguments' => array('dna_form'),
+            'access callback' => TRUE,
+            'type' => MENU_NORMAL_ITEM,
+        );
+
+        $items['dna_results'] = array(
+            'title' => 'Results',
+            'page callback' => 'dna_results',
+            'access callback' => TRUE,
+            'type' => MENU_CALLBACK,
+        );
+
+        return $items;
+    }
+
+    function dna_form()
+    {
+        $form['dna_letters'] = array(
+            '#title' => 'DNA Letters',
+            '#type' => 'textfield',
+            '#description' => t('Please enter the first four letters of your DNA chain'),
+            '#required' => TRUE,
+        );
+
+        $form['Submit'] = array(
+            '#type' => 'submit',
+            '#value' => 'Go',
+        );
+
+        return $form;
+    }
+
+    function dna_reverse($user_input)
+    {
+        $dna_array = array("A" => "T", "C" => "G", "T" => "A", "C" => "G");
+
+        $user_input = str_split($user_input);
+
+        $dna_results = array();
+
+        foreach ($user_input as $dna){
+            $nucleotide = array_search($dna, $dna_array);
+            array_push($dna_results, $nucleotide);
+        }
+
+        return implode("", $dna_results);
+    }
+
+    function dna_form_submit($form, &$form_state){
+        $user_input = $form_state['values']['dna_letters'];
+        $result = dna_reverse($user_input);
+        $_SESSION['dna_results'] = $result;
+        $form_state['redirect'] = 'dna_success';
+    }
+
+    function dna_results_page(){
+        $output = $_SESSION['dna_results'];
+        return '<h1>' . $output . '</h1>';
+    }

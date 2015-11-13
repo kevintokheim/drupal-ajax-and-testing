@@ -1,0 +1,7 @@
+name = DNA Module
+description = A module which allows the user to receive the other half of their DNA makeup.
+core = 7.x
+package = My Modules
+files[] = dna_module.module
+files[] = dna_module.test
+dependencies[] = simpletest
