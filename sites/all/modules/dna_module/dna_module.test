@@ -13,7 +13,7 @@
 
         public function setUp()
         {
-            parent::setUp(array('site_user'));
+            parent::setUp(array('dna_checker'));
             $user = $this->drupalCreateAdminUser();
             $this->drupalLogin($user);
             $this->createTestPage();
@@ -24,6 +24,10 @@
             $info = array();
             $info['dna_letters'] = 'ACTG';
             $this->drupalPost('dna', $info, t('Find Match'));
+
+            $path['source'] = 'node/1';
+            $path['alias'] = 'pagetest';
+            path_save($path);
         }
 
         public function drupalCreateAdminUser(array $permissions = array())
@@ -34,6 +38,15 @@
             $user->roles[$index] = 'administrator';
             return user_save($user);
         }
+
+        public function testDnaReverse(){
+            $user_input = 'ATGC';
+            $form_state['values']['dna_letters'] = $user_input;
+            $this->drupalPost('dna', $form_state, 'See you DNA string');
+            $result = 'TACG';
+            $this->assertText()
+        }
+
     }
 
     class DnaTestCase extends DrupalUnitTestCase
